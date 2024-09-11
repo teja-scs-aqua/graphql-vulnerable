@@ -1,4 +1,10 @@
 aniso8601==7.0.0
+argparse
+requests
+smartsheet-python-sdk
+boxsdk
+gradio_client
+pathlib
 attrs==21.4.0
 certifi==2020.12.5
 chardet==4.0.0
