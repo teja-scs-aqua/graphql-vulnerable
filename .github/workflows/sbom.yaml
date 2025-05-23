@@ -13,7 +13,7 @@ jobs:
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
         with:
-          args: trivy fs --skip-files dvcsharp-core-api.csproj --skip-dirs ./documentation-dvcsharp-book --debug --sast --reachability --dotnet-proj --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1 .
+          args: trivy fs --debug --sast --reachability --package-json --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1 .
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
@@ -64,8 +64,8 @@ jobs:
       - name: Manifest Generation
         run: |
           export BILLY_SERVER=https://billy.codesec.aquasec.com
-          export TRIVY_USERNAME=teja.chittamuri@aquasec.com
-          export TRIVY_PASSWORD=Jesus@saves2001
+          export TRIVY_USERNAME=${{ secrets.TRIVY_USERNAME }}
+          export TRIVY_PASSWORD=${{ secrets.TRIVY_PASSWORD }}
           export TRIVY_DB_REPOSITORY=registry.aquasec.com/trivy-db:2
           export TRIVY_JAVA_DB_REPOSITORY=registry.aquasec.com/trivy-java-db:1
           export TRIVY_CHECKS_BUNDLE_REPOSITORY=registry.aquasec.com/trivy-checks:1
