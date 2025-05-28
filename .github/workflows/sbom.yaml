@@ -1,6 +1,13 @@
 name: Build & Test
 
-on: [pull_request,push]
+on: 
+  workflow_call:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+  pull_request:
+    branches:
+      - main 
 
 jobs:
   scan:
